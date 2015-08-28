@@ -1,7 +1,7 @@
 {
-  "name": "colorsync-ola",
+  "name": "colorsync-dmxpro",
   "version": "0.0.1",
-  "description": "Control lightings as ColorSync slave via OLA",
+  "description": "Control lightings as ColorSync slave via ENTTEC DMXUSB PRO",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,6 +9,7 @@
   "author": "Akira Sawada",
   "license": "ISC",
   "dependencies": {
+    "dmxpro": "^0.1.5",
     "ws": "^0.7.1"
   }
 }

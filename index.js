@@ -34,7 +34,7 @@ var csc;
 var server = process.argv[2];
 var token = process.argv[3];
 var universe = process.argv[4];
-var channels = process.argv.slice(5);
+var channel = process.argv[5];
 
 
 csc = new CS({
@@ -43,20 +43,25 @@ csc = new CS({
 });
 
 
-var spawn = require('child_process').spawn;
 var dmxlen = Math.max( 8, Math.max.apply(null,channels) + 2 );
 function r (){return Math.random();}
+
+var dmxpro = require('dmxpro');
+var dmx = dmxpro.alloc();
+console.log(dmxpro);
+dmxpro.init(dmx, {
+  colourspace: 'rgb',
+  fixtures: [{
+    id: 1,
+    map: {
+      red: channel,
+      green: channel + 1,
+      blue: channel + 2
+    }
+  }]
+});
+
 global.colorsync = function (col) {
-  var dmx = new Array(dmxlen);
-  for ( var i=0;i<dmx.length;i++) {
-    dmx[i] = 0;
-  }
-  for ( var chIdx = 0; chIdx < channels.length; chIdx++ ) {
-    var ch = channels[chIdx] - 1; // dmx channel number starts with 1
-    dmx[ch  ] = col.r;
-    dmx[ch+1] = col.g;
-    dmx[ch+2] = col.b;
-  }
-  var args = ['--universe', universe, '--dmx', dmx.join(',')];
-  spawn('ola_set_dmx', args);
+  console.log(col);
+  dmxpro.color(dmx, universe, col.r/255, col.g/255, col.b/255);
 };

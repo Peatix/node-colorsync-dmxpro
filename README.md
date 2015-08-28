@@ -1,31 +1,10 @@
 # Requirement
 
 * node.js
-* OLA ( Open Lighting Architecture )
 
-## Install example for OS X Yosemite and ENTTEC Open DMX USB
+## Install example for OS X Yosemite and ENTTEC DMXUSB PRO
 
-install homebrew then
-```
-brew install node
-brew install libftdi
-brew install libftdi0
-git clone https://github.com/OpenLightingProject/ola.git
-cd ola
-autoreconf -i
-./configure
-make
-make check
-sudo make install
-cd ~/.ola
-# disable opendmx and usbserial
-## run this https://www.enttec.com/?main_menu=Products&pn=70304&show=faq
-## and then disable ~/.ola/ola-opendmx.conf and enable ~/.ola/ola-ftdidmx.conf
-olad -f
-```
-
-then, open `http://localhost:9090/` and set up devices to universe
-NOTE: don't stay in DMX Console tab. it also sending dmx signals continuously as long as it's been opened.
+TBD
 
 # clone this repository to your machine
 
@@ -50,5 +29,5 @@ open a source code view of running reception screen, and find out the lines like
 
 run app with the server address and token which get by the step above, and DMX Universe and addresses
 ```
-$ node ./index.js ws://colorsync.peatix.com/12345/reception/uid=12345 abcdefghogehogehoge <dmxuniverse> <dmxaddress> [<dmxaddress>...]
+$ node ./index.js ws://colorsync.peatix.com/12345/reception/uid=12345 abcdefghogehogehoge <dmxuniverse> <dmxaddress>
 ```
