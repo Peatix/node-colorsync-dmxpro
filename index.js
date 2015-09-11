@@ -34,8 +34,7 @@ var csc;
 var server = process.argv[2];
 var token = process.argv[3];
 var universe = process.argv[4];
-var channel = process.argv[5];
-
+var channel = parseInt(process.argv[5]);
 
 csc = new CS({
   server: server,
@@ -43,7 +42,7 @@ csc = new CS({
 });
 
 
-var dmxlen = Math.max( 8, Math.max.apply(null,channels) + 2 );
+var dmxlen = 1;
 function r (){return Math.random();}
 
 var dmxpro = require('dmxpro');
